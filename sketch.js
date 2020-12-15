@@ -77,7 +77,8 @@ function draw(){
     bird.display();
     platform.display();
     //log6.display();
-    slingshot.display();    
+    slingshot.display(); 
+    console.log(bird.body.speed);   
 }
 
 function mouseDragged(){
@@ -93,7 +94,9 @@ function mouseReleased(){
 }
 
 function keyPressed(){
-    if(keyCode === 32){
+    if(keyCode === 32 && bird.body.speed < 1){
+       bird.trajectory = [] 
+       Matter.Body.setPosition(bird.body, {x: 200, y:50});
        slingshot.attach(bird.body);
     }
 }
@@ -113,5 +116,4 @@ async function getBackgroundImg(){
     }
 
     backgroundImg = loadImage(bg);
-    console.log(backgroundImg);
 }
